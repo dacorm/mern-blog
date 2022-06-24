@@ -12,9 +12,7 @@ import UserModel from "./models/user.js";
 import { PostController, UserController } from "./controllers/index.js";
 import { handleValidationErrors, checkAuth } from "./utils/index.js";
 
-mongoose.connect(
-    process.env.MONGODB_URI
-).then(() => {
+mongoose.connect(process.env.MONGODB_URI).then(() => {
     console.log('DB ok')
 }).catch((err) => {
     console.log(err);
@@ -62,4 +60,4 @@ app.listen(process.env.PORT || 4444, (err) => {
     }
 
     console.log('Server OK')
-})
+});
