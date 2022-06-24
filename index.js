@@ -22,14 +22,14 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
 const app = express();
 
 const storage = multer.diskStorage({
-   destination: (_, __, cb) => {
-       if (!fs.existsSync('uploads')) {
-           fs.mkdirSync('uploads');
-       }
-       cb(null, 'uploads');
-   },
+    destination: (_, __, cb) => {
+        if (!fs.existsSync('uploads')) {
+            fs.mkdirSync('uploads');
+        }
+        cb(null, 'uploads');
+    },
     filename: (_, file, cb) => {
-    cb(null, file.originalname);
+        cb(null, file.originalname);
     },
 });
 
