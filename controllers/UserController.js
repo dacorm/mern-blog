@@ -4,28 +4,30 @@ import jwt from "jsonwebtoken";
 
 export const register = async (req, res) => {
     try {
-
         const password = req.body.password;
         const salt = await bcrypt.genSalt(10);
-        const hash = await bcrypt.hash(password, salt)
-
+        const hash = await bcrypt.hash(password, salt);
 
         const doc = new UserModel({
             email: req.body.email,
             fullName: req.body.fullName,
             avatarUrl: req.body.avatarUrl,
             passwordHash: hash,
-        })
+        });
 
         const user = await doc.save();
 
-        const token = jwt.sign({
-            _id: user._id,
-        }, 'secret123', {
-            expiresIn: '30d',
-        });
+        const token = jwt.sign(
+            {
+                _id: user._id,
+            },
+            'secret123',
+            {
+                expiresIn: '30d',
+            },
+        );
 
-        const {passwordHash, ...userData} = user._doc;
+        const { passwordHash, ...userData } = user._doc;
 
         res.json({
             ...userData,
@@ -37,7 +39,7 @@ export const register = async (req, res) => {
             message: 'Не удалось зарегистрироваться',
         });
     }
-}
+};
 
 export const login = async (req, res) => {
     try {
