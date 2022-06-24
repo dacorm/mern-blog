@@ -13,7 +13,7 @@ import { PostController, UserController } from "./controllers/index.js";
 import { handleValidationErrors, checkAuth } from "./utils/index.js";
 
 mongoose.connect(
-    'mongodb+srv://admin:Tuvrigodigital@cluster0.qzy58fl.mongodb.net/blog?retryWrites=true&w=majority',
+    process.env.MONGODB_URI
 ).then(() => {
     console.log('DB ok')
 }).catch((err) => {
@@ -56,7 +56,7 @@ app.post('/upload', checkAuth, upload.single('image'), (req, res) => {
     });
 })
 
-app.listen(4444, (err) => {
+app.listen(process.env.PORT || 4444, (err) => {
     if (err) {
         return console.log(err)
     }
