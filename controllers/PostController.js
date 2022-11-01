@@ -131,6 +131,7 @@ export const create = async (req, res) => {
             imageUrl: req.body.imageUrl,
             tags: req.body.tags.split(','),
             user: req.userId,
+            isArticle: req.body.isArticle,
         });
 
         const post = await doc.save();
