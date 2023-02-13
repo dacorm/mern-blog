@@ -10,8 +10,9 @@ import multer from 'multer';
 
 import {registerValidation, loginValidation, postCreateValidation} from './validations.js';
 import UserModel from "./models/user.js";
-import { PostController, UserController } from "./controllers/index.js";
+import { PostController, UserController, GuideController } from "./controllers/index.js";
 import { handleValidationErrors, checkAuth } from "./utils/index.js";
+
 
 mongoose.connect(process.env.MONGODB_URI).then(() => {
     console.log('DB ok')
@@ -51,6 +52,11 @@ app.get('/posts/:id', PostController.getOne);
 app.post('/posts', checkAuth, postCreateValidation, handleValidationErrors, PostController.create);
 app.delete('/posts/:id', checkAuth, PostController.remove);
 app.patch('/posts/:id', checkAuth, postCreateValidation, handleValidationErrors, PostController.update);
+app.get('/guides', GuideController.getAll);
+app.get('/guides/:id', GuideController.getOne);
+app.patch('/guides/:id', checkAuth, GuideController.update);
+app.delete('/guides/:id', checkAuth, GuideController.remove);
+app.post('/guides', checkAuth, GuideController.create);
 
 app.post('/upload', checkAuth, upload.single('image'), (req, res) => {
     res.json({
