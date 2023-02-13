@@ -14,7 +14,7 @@ import { PostController, UserController, GuideController } from "./controllers/i
 import { handleValidationErrors, checkAuth } from "./utils/index.js";
 
 
-mongoose.connect(process.env.MONGODB_URI).then(() => {
+mongoose.connect('mongodb+srv://admin:Tuvrigodigital@cluster0.qzy58fl.mongodb.net/blog?retryWrites=true&w=majority').then(() => {
     console.log('DB ok')
 }).catch((err) => {
     console.log(err);
