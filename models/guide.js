@@ -11,8 +11,8 @@ const GuideSchema = new mongoose.Schema({
         unique: true,
     },
     heroId: {
-        type: String,
-        default: true,
+        type: Number,
+        required: true,
     },
     viewsCount: {
         type: Number,
