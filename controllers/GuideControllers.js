@@ -108,12 +108,13 @@ export const getOne = async (req, res) => {
 }
 
 export const create = async (req, res) => {
+    console.log(req.body);
     try {
         const doc = new GuideModel({
             title: req.body.title,
             text: req.body.text,
             user: req.userId,
-            heroId: req.heroId,
+            heroId: req.body.heroId,
         });
 
         const post = await doc.save();
