@@ -43,7 +43,7 @@ export const remove = async (req, res) => {
 
         GuideModel.findOneAndDelete(
             {
-                _id: guideId,
+                heroId: guideId,
             },
             (err, doc) => {
                 if (err) {
