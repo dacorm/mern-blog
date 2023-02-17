@@ -18,7 +18,7 @@ export const update = async (req, res) => {
         const guideId = req.params.id;
 
         await GuideModel.updateOne({
-            _id: guideId,
+            heroId: guideId,
         }, {
             title: req.body.title,
             text: req.body.text,
@@ -77,7 +77,7 @@ export const getOne = async (req, res) => {
         const guideId = req.params.id;
 
         GuideModel.findOneAndUpdate({
-            _id: guideId,
+            heroId: guideId,
         }, {
             $inc: { viewsCount: 1 }
         }, {
